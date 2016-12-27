@@ -1,0 +1,33 @@
+{% extends 'frontend/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+
+{% if user.is_authenticated %}
+    <img src="{{ user.profile.profile_image_url }}"/>
+    {% if user.first_name or user.last_name %}
+        Here {{ request.user.first_name }} {{ request.user.last_name }}
+    {% else %}
+        {{ user.username }}
+        <p> {{ user.profile.address }} </p>
+    {% endif %}
+    {% if user.profile.account_verified %} (verified) {% else %} (unverified) {% endif %}
+
+{% else %}
+    <a href="/accounts/login/" class="pull-right">Login</a>
+
+{% endif %}
+    </div>
+    <div class="row">
+    <div class="col-xs-12">
+        {% for stop in user.profile.busstop_set.all %}
+        <P>{{ stop }} </P>
+        {% endfor %}
+        <P><a href={% url 'stop-add' %}>Add another stop</a></P>
+    </div>
+</div>
+{% endblock %}

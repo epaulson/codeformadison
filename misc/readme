@@ -1,0 +1,8 @@
+http://localhost:8000/o/authorize/?response_type=code&client_id=testappid&redirect_uri=http://localhost:7000/callback/
+
+
+CODE=S6UbunMDY7gLkFekd8uVzFkdJRB6Wn
+CLIENT_SECRET=rMXAZkukXvTlZ6z2pUZ47rRDdHIKC4kuV3u0Cv5KmHEzGY9bUMbbjlKrepRZoYednC1wa49OjQW5hu3kdZppFrGiHzaEhIBMsGIYqbgHwyFBB2KyJfLhADSmu63mETrd
+curl -v -v -v -X POST -d "grant_type=authorization_code&code=$CODE&redirect_uri=http://localhost:7000/callback/" --user testappid:$CLIENT_SECRET http://localhost:8000/o/token/
+
+curl -v -H "Authorization: Bearer Ox9Ym2hEIJriWih4kEWyKKDTwhd3uK"  http://localhost:8000/user/
