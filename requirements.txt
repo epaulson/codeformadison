@@ -5,3 +5,4 @@ django-allauth
 django-bootstrap3
 graphene_django
 django-filter
+gunicorn
