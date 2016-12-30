@@ -16,6 +16,8 @@ import hashlib
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name="profile")
     address = models.CharField(blank=True, max_length=200)
+    parcel = models.CharField(blank=True, max_length=50)
+    trashpickup = models.CharField(blank=True, max_length=200)
 
     def __str__(self):
       return str(self.user.username)    

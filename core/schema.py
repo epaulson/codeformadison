@@ -32,4 +32,12 @@ class Query(AbstractType):
       else:
         return BusStop.objects.filter(owner=context.user.profile)
 
+    def resolve_all_profiles(self, args, context, info):
+      print(context.user)
+      if not context.user.is_authenticated():
+        return Profile.objects.none()
+      else:
+        return Profile.objects.filter(user=context.user.profile)
+
+
 
