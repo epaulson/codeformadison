@@ -39,7 +39,7 @@ class Profile(models.Model):
       otherwise return the user's Gravatar URL
       """
 
-      return "http://www.gravatar.com/avatar/{}?s=40".format(hashlib.md5('epaulson@unit1127.com'.encode('utf-8')).hexdigest())
+      return "http://www.gravatar.com/avatar/{}?s=40".format(hashlib.md5(self.user.email.encode('utf-8')).hexdigest())
 
 # TODO - lookup parcel from address
 # the socrata api to do that looks like this
