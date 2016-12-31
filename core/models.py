@@ -13,6 +13,7 @@ import hashlib
 # Create your models here.
 
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name="profile")
     address = models.CharField(blank=True, max_length=200)
@@ -40,6 +41,10 @@ class Profile(models.Model):
 
       return "http://www.gravatar.com/avatar/{}?s=40".format(hashlib.md5('epaulson@unit1127.com'.encode('utf-8')).hexdigest())
 
+# TODO - lookup parcel from address
+# the socrata api to do that looks like this
+# 
+# curl -v https://data.cityofmadison.com/resource/at89-xy89.json?\$where=upper\(address\)%20like%20upper\(%27%25202%20Demilo%20way%25%27\)
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -53,6 +58,8 @@ def save_user_profile(sender, instance, **kwargs):
 # this should really be a core set of stops that is managed by
 # the app and then a user has a bunch of references to which stops 
 # they like
+#
+# useful bus lookup - curl -v 'http://api.smsmybus.com/v1/getarrivals?key=XXXXX&stopID=1100'
 class BusStop(models.Model):
     stop_id = models.CharField(blank=True, max_length=30)
     name = models.CharField(blank=True, max_length=200)
