@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'graphene_django',
     'oauth2_provider',
+    'anymail',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -141,7 +142,9 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'https://codeformadison.com/accounts/login/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'anymail.backends.mailgun.MailgunBackend'
+DEFAULT_FROM_EMAIL = 'team@codeformadison.com'
 
 GRAPHENE = {
     'SCHEMA': 'madapi.schema.schema'
@@ -195,3 +198,4 @@ LOGGING = {
 
 STATIC_ROOT="/home/ubuntu/codeformadison-static/static"
 STATIC_URL="/static/"
+

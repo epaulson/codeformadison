@@ -6,3 +6,4 @@ django-bootstrap3
 graphene_django
 django-filter
 gunicorn
+django-anymail[mailgun]
