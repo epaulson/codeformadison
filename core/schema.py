@@ -24,10 +24,10 @@ class BusStopNode(DjangoObjectType):
 
 
 class Query(AbstractType):
-    profile = relay.Node.Field(ProfileNode)
+    #profile = relay.Node.Field(ProfileNode)
     all_profiles = DjangoFilterConnectionField(ProfileNode)
 
-    busstop = relay.Node.Field(BusStopNode)
+    #busstop = relay.Node.Field(BusStopNode)
     all_busstops = DjangoFilterConnectionField(BusStopNode)
 
     def resolve_all_busstops(self, args, context, info):
@@ -40,7 +40,7 @@ class Query(AbstractType):
     def resolve_all_profiles(self, args, context, info):
       print(context.user)
       if not context.user.is_authenticated():
-        return Profile.objects.all()
+        return Profile.objects.none()
       else:
         return Profile.objects.filter(user=context.user)
 
