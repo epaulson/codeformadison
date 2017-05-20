@@ -13,7 +13,7 @@ class ProfileNode(DjangoObjectType):
     interfaces = (relay.Node,)
 
   def resolve_nextpickupdate(self, args, context, info):
-    matched = next(x for x in schedules[context.user.profile.trashpickup]  if x[0]>datetime.date.today())
+    matched = next(x for x in schedules[context.user.profile.trashpickup]  if x[0]>=datetime.date.today())
     return("The next pickup is %s and it is a trash and %s pickup day" % (matched[0].strftime("%A %B %-d"), matched[1])) 
 
 class BusStopNode(DjangoObjectType):
